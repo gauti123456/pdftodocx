@@ -1,13 +1,14 @@
 const express = require("express");
 const multer = require('multer')
+const path = require('path')
+var sanitize = require("sanitize-filename");
+const {exec} = require('child_process')
+const fs = require('fs')
 
 const app = express();
 
-app.get("/pdftodocx", (req, res) => {
-  res.render("pdftodocx", {
-    title:
-      "FREE PDF to DOCX Word Document Converter Online Tool - PDF Document to Docx Word Document Converter Online - FreeMediaTools.com",
-  });
+app.get("/", (req, res) => {
+  res.sendFile(__dirname + "/index.html")
 });
 
 const pdftodocxfilter = function (req, file, callback) {
